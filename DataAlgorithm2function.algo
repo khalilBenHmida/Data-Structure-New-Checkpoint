@@ -1,0 +1,49 @@
+// This is the function method
+FUNCTION dot_product(v1, v2: ARRAY_OF FLOAT[]): FLOAT;
+VAR
+    i: INTEGER;
+    result: FLOAT;
+BEGIN
+    result := 0;
+    FOR i FROM 0 TO LENGTH(v1) - 1 DO
+        result := result + v1[i] * v2[i];
+    END_FOR;
+    RETURN result;
+END ;
+
+ALGORITHM DotProductAlgorithm
+VAR
+    n: INTEGER;
+    v1, v2: ARRAY_OF FLOAT[];
+    ps: FLOAT;
+
+
+
+BEGIN
+    //(* Input: Number of pairs of vectors *)
+    WRITE("Enter the number of vector pairs (n): ");
+    READ(n);
+
+   // (* Input: Vectors and Check Orthogonality *)
+    FOR i FROM 1 TO n DO
+        WRITELN("Enter elements for vector v1 (space-separated): ");
+        FOR j FROM 1 TO LENGTH(v1) DO
+            READ(v1[j - 1]);
+        END_FOR
+
+        WRITELN("Enter elements for vector v2 (space-separated): ");
+        FOR j FROM 1 TO LENGTH(v2) DO
+            READ(v2[j - 1]);
+        END_FOR
+
+        //(* Call the dot_product function *)
+        ps := dot_product(v1, v2);
+
+        //(* Check if vectors are orthogonal *)
+        IF (ps = 0) THEN
+            WRITELN("Vectors are orthogonal.");
+        ELSE
+            WRITELN("Vectors are not orthogonal.");
+        END_IF
+    END_FOR
+END 
